@@ -1,0 +1,15 @@
+# Copy to config/sites.yaml and replace with your own sites.
+#
+# Each key is an alias an agent can use instead of the exact GSC property.
+# gsc_property must match the property exactly as it appears in Search Console:
+#   - Domain property:      sc-domain:example.com
+#   - URL-prefix property:  https://www.example.com/   (trailing slash required)
+
+sites:
+  example:
+    name: Example Website
+    gsc_property: sc-domain:example.com
+
+  example-blog:
+    name: Example Blog
+    gsc_property: https://blog.example.com/

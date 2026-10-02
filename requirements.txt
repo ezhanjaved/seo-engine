@@ -1,0 +1,7 @@
+google-api-python-client>=2.100
+google-auth>=2.23
+PyYAML>=6.0
+python-dotenv>=1.0
+
+# Tests only
+pytest>=8.0
