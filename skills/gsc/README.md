@@ -1,6 +1,6 @@
 # GSC skill
 
-Retrieves Google Search Console performance data (Search Analytics API). It does not analyse or interpret anything; see `methodologies/monitoring.md` for that.
+Retrieves Google Search Console performance data (Search Analytics API). It does not analyse or interpret anything; see `methodologies/gsc_monitoring.md` for that.
 
 ## Usage
 

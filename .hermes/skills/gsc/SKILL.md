@@ -16,7 +16,7 @@ A deterministic CLI that retrieves Google Search Console (Search Analytics) perf
 | Need | Where |
 | --- | --- |
 | Exact CLI syntax, flags, output example | `skills/gsc/README.md` |
-| How to investigate and interpret the data | `methodologies/monitoring.md` |
+| How to investigate and interpret the data | `methodologies/gsc_monitoring.md` |
 | Site aliases | `config/sites.yaml` (local, not committed; template at `config/sites.example.yaml`) |
 
 ## When to Use
@@ -29,7 +29,7 @@ Use this skill when a question needs organic search evidence from Google Search 
 - CTR or average position for a site, page or query;
 - investigating an organic performance decline or growth.
 
-For monitoring or any question about a performance change, read `methodologies/monitoring.md` before deciding which calls to make.
+For monitoring or any question about a performance change, read `methodologies/gsc_monitoring.md` before deciding which calls to make.
 
 ## Tool Location / Execution
 
@@ -76,7 +76,7 @@ Not supported: pagination beyond the row limit, search types other than the API 
 ## How to Use During an Investigation
 
 1. Work out from the user's question what evidence is needed before calling anything.
-2. For monitoring or interpreting a performance change, follow `methodologies/monitoring.md`. It owns the comparison periods, thresholds, order of investigation and stopping rules.
+2. For monitoring or interpreting a performance change, follow `methodologies/gsc_monitoring.md`. It owns the comparison periods, thresholds, order of investigation and stopping rules.
 3. Start at the level the question is about. A site-wide question starts with an aggregated call, not a page or query breakdown.
 4. Make further calls only when the methodology or the evidence so far justifies drilling down. Multiple calls in one investigation are expected.
 5. Do not request every dimension by default. More dimensions means more rows, a higher chance of truncation, and no extra insight unless that breakdown is needed.
@@ -109,7 +109,7 @@ Truncation: if `row_count` equals `request.row_limit`, the result may be truncat
 
 This tool retrieves evidence. It does not establish SEO root causes.
 
-Use `methodologies/monitoring.md` to interpret GSC monitoring evidence. Do not apply thresholds or interpretation rules of your own in its place.
+Use `methodologies/gsc_monitoring.md` to interpret GSC monitoring evidence. Do not apply thresholds or interpretation rules of your own in its place.
 
 GSC can show whether performance changed and where the change is concentrated. When it cannot show why, state what the evidence shows, what remains unknown, and what additional evidence would be needed. Do not guess.
 
