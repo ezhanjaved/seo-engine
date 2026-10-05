@@ -3,5 +3,9 @@ google-auth>=2.23
 PyYAML>=6.0
 python-dotenv>=1.0
 
+# SERP skill (also needs a browser: python -m playwright install chromium)
+playwright>=1.40
+beautifulsoup4>=4.12
+
 # Tests only
 pytest>=8.0

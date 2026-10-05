@@ -11,6 +11,7 @@ V0 does exactly one thing: retrieve Google Search Console (GSC) performance data
 | Layer | Lives in | Responsibility |
 | --- | --- | --- |
 | Skill | `skills/gsc/` | Retrieves data. No analysis. |
+| Skill | `skills/serp/` | Collects search-results and ranking-page evidence. No analysis. |
 | Methodology | `methodologies/` | Explains how to interpret data. |
 | Agent (Hermes) | outside this repo | Decides how and when to call a skill. |
 
@@ -23,6 +24,7 @@ python -m venv .venv
 # Windows: .venv\Scripts\activate
 # macOS/Linux: source .venv/bin/activate
 pip install -r requirements.txt
+python -m playwright install chromium   # only needed for skills/serp
 
 cp .env.example .env
 cp config/sites.example.yaml config/sites.yaml
@@ -35,7 +37,7 @@ Then:
 3. Point `GSC_SERVICE_ACCOUNT_FILE` in `.env` at the key file.
 4. List your properties in `config/sites.yaml`.
 
-See [skills/gsc/README.md](skills/gsc/README.md) for usage.
+See [skills/gsc/README.md](skills/gsc/README.md) and [skills/serp/README.md](skills/serp/README.md) for usage.
 
 ## Repository structure
 
@@ -50,23 +52,34 @@ seo-engine/
 ├── methodologies/
 │   └── monitoring.md         # how to interpret GSC data (template)
 ├── skills/
-│   └── gsc/
+│   ├── gsc/
+│   │   ├── __init__.py
+│   │   ├── __main__.py       # CLI: python -m skills.gsc
+│   │   ├── client.py         # GSC Search Analytics retrieval
+│   │   └── README.md
+│   └── serp/
 │       ├── __init__.py
-│       ├── __main__.py       # CLI: python -m skills.gsc
-│       ├── client.py         # GSC Search Analytics retrieval
+│       ├── __main__.py       # CLI: python -m skills.serp
+│       ├── collector.py      # browser lifecycle and orchestration
+│       ├── google.py         # Google results-page parsing
+│       ├── bing.py           # Bing results-page parsing
+│       ├── extractor.py      # ranking-page content extraction
+│       ├── urls.py           # URL safety checks
 │       └── README.md
 └── tests/
     ├── __init__.py
-    └── test_gsc.py           # pytest; Google API mocked
+    ├── test_gsc.py           # pytest; Google API mocked
+    └── test_serp.py          # pytest; browser faked, static HTML
 ```
 
 ## Usage
 
 ```bash
 python -m skills.gsc --site example --start-date 2026-07-01 --end-date 2026-09-30 --dimensions date
+python -m skills.serp --query "best local seo tools"
 ```
 
-Prints JSON to stdout. Run the tests with `python -m pytest`.
+Each prints JSON to stdout. Run the tests with `python -m pytest`.
 
 ## Security
 

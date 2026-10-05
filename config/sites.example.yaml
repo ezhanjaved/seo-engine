@@ -6,10 +6,6 @@
 #   - URL-prefix property:  https://www.example.com/   (trailing slash required)
 
 sites:
-  example:
-    name: Example Website
-    gsc_property: sc-domain:example.com
-
-  example-blog:
-    name: Example Blog
-    gsc_property: https://blog.example.com/
+  ressichem:
+    name: Ressichem
+    gsc_property: sc-domain:ressichem.com
